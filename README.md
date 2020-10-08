@@ -1,8 +1,8 @@
 
 # Use-Fluentd
-Powershell Modules for installing and managing FluentD. These modules are currently set up to collect windows event logs but can be altered to suit any Fluentd plugins
+This is a Powershell Module for installing and managing FluentD. These modules are currently set up to collect windows event logs but can be altered to suit any Fluentd plugins
 
-This repo includes 8 modules to install, alter, and use Fluentd
+This repo includes 8 modules to install, configure, and use Fluentd
 1. [Disable-Fluentd](https://github.com/azusapacificuniversity/Use-Fluentd/blob/main/Disable-Fluentd.psm1)
 2. [Enable-Fluentd](https://github.com/azusapacificuniversity/Use-Fluentd/blob/main/Enable-Fluentd.psm1)
 3. [Get-FluentdStatus](https://github.com/azusapacificuniversity/Use-Fluentd/blob/main/Get-FluentdStatus.psm1)
@@ -13,12 +13,12 @@ This repo includes 8 modules to install, alter, and use Fluentd
 8. [Use-Fluentd](https://github.com/azusapacificuniversity/Use-Fluentd/blob/main/Use-Fluentd.psd1)
 
 ## Installing Fluentd
-In order to properly run the Install-Fluentd module, Powershell 5.1 must be [installed](https://docs.microsoft.com/en-us/powershell/scripting/windows-powershell/wmf/setup/install-configure?view=powershell-7). 
+In order to properly run the Install-Fluentd module, Powershell 5.1 must be [installed](https://docs.microsoft.com/en-us/powershell/scripting/windows-powershell/wmf/setup/install-configure?view=powershell-7).
 Now we can start installing the module and installing Fluentd
 1. In Powershell run this command to install the necessary modules
 > TODO
 2. Run the install module with your server information. *This is just an example*
-> Install-FluentdClient -Server 192.168.1.40 -Servername fluentd-02 -Tag "it.winevt.raw" Port 7777
+> Install-FluentdClient -Server 192.168.1.40 -Servername fluentd-02 -Tag "it-winevt.raw" Port 7777
 
 After installation, Fluentd should be up and running.
 ### Configure Fluentd
@@ -34,8 +34,18 @@ and it will be completley removed from your computer
 ## Running Fluentd
 You can start or stop Fluentd at any time using the following modules:
 > Enable-Fluentd
-or 
+or
 Disable-Fluentd
 
-To see if Fluentd is running currently use:
+To see information about Fluentd's status and configuration, you can use :
 > Get-FluentdStatus
+
+Here is a sample output from that command:
+```
+Fluentd Details:
+Version: 4.0.1
+Server:  192.168.1.40
+Port:  7777
+Tags:  it.winevt.raw
+State: Running
+```
