@@ -14,7 +14,7 @@ function Uninstall-Fluentd {
     if ( $(Get-Service -Name fluentdwinsvc) -ne $null ) {
         Write-Host "Unregistering Windows service."
         Disable-Fluentd
-        Start-Process "C:\opt\td-agent\embedded\bin\fluentd" -ArgumentList "--reg-winsvc u" -Wait -Verb RunAs
+        Start-Process "C:\opt\td-agent\bin\fluentd" -ArgumentList "--reg-winsvc u" -Wait -Verb RunAs
         Write-Verbose "You need to restart to completely remove the product." -Verbose
     }
     Write-Host "Uninstalling td-agent..."
