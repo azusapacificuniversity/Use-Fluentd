@@ -40,7 +40,7 @@ $ConfigFileBasline = "
         path C:\opt\td-agent\winevt.pos
     </storage>
     <subscribe>
-		channels application, system, security
+		channels application,system,security
 		read_existing_events false
 	</subscribe>
 </source>
@@ -48,13 +48,13 @@ $ConfigFileBasline = "
 #--------------------------------------
 # FILTER PLUGIN
 #--------------------------------------
-# This is used to ensure backwards compatabilty with windows_eventlog (version 1)
+# This is used to ensure backwards compatibility with windows_eventlog (version 1)
 # since windows_eventlog2 uses 'Description' vs 'description'
-# This will be depricated in a future version
+# This will be deprecated in a future version
 <filter **>
    @type record_transformer
    <record>
-		description ${record['Description']}
+		description `${record[`"Description`"]}
    </record>
    remove_keys Description
 </filter>
