@@ -14,10 +14,12 @@ This repo includes 8 modules to install, configure, and use Fluentd
 
 ## Installing Fluentd
 In order to properly run the Install-Fluentd module, Powershell 5.1 must be [installed](https://docs.microsoft.com/en-us/powershell/scripting/windows-powershell/wmf/setup/install-configure?view=powershell-7).
-Now we can start installing the module and installing Fluentd
+Now we can start can install the module through Powershell Gallery
 1. In Powershell run this command to install the necessary modules
-> TODO
-2. Run the install module with your server information. *This is just an example*
+> Install-Module -Name Use-Fluentd
+2. Import the module into your session
+> Import-Module Use-Fluentd
+3. Download the msi from Treasure Data Inc. and configure with your server information. *This is just an example*
 > Install-FluentdClient -Server 192.168.1.40 -Servername fluentd-02 -Tag "it-winevt.raw" Port 7777
 
 After installation, Fluentd should be up and running.
