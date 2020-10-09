@@ -20,7 +20,8 @@ Now we can start can install the module through Powershell Gallery
 2. Import the module into your session
 > Import-Module Use-Fluentd
 3. Download the msi from Treasure Data Inc. and configure with your server information. *This is just an example*
-> Install-FluentdClient -Server 192.168.1.40 -Servername fluentd-02 -Tag "it-winevt.raw" Port 7777
+> Install-Fluentd -Server 192.168.1.40 -Servername fluentd-02 -Tag "it-winevt.raw" Port 7777
+>> Port defaults to 443 & the Tag defaults to winevt.raw
 
 After installation, Fluentd should be up and running.
 ### Configure Fluentd
