@@ -10,7 +10,7 @@
     .PARAMETER Version
         The version of td-agent to install. (Defaults to 4.0.1)
     .EXAMPLE
-        Install-FluentdClient -Server 192.168.1.40 -Servername fluentd-02 -Tag "it.winevt.raw" Port 7777
+        Install-Fluentd -Server 192.168.1.40 -Servername fluentd-02 -Tag "it.winevt.raw" Port 7777
 #>
 
 function Install-Fluentd {
