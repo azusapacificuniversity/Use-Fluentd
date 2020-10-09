@@ -19,4 +19,11 @@ function Uninstall-Fluentd {
     }
     Write-Host "Uninstalling td-agent..."
     Start-Process "msiexec.exe" -Args "/qn /x ${ProductCode}" -Wait -Verb RunAs
+    
+    if (Test-Path "C:\opt\td-agent") {
+        Remove-Item C:\opt\td-agent -Recurse -Force -Confirm:$false
+        if(!(Test-Path "C:\opt\*")) {
+            Remove-Item C:\opt -Recurse -Force -Confirm:$false
+        }
+    }
 }
