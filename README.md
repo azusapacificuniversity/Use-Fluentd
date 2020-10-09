@@ -1,7 +1,7 @@
 # Use-Fluentd
-This is a Powershell Module for installing and managing FluentD. These modules are currently set up to collect windows event logs but can be altered to suit any Fluentd plugins
+This is a Powershell Module for downloading, installing, and configuring [Fluentd](https://www.fluentd.org) via the .msi packages provided by [Treasure Data Inc.](https://treasuredata.com)
 
-This repo includes 8 modules to install, configure, and use Fluentd
+This repo consists of 8 modules to download, install, configure, and manage Fluentd:
 1. [Disable-Fluentd](https://github.com/azusapacificuniversity/Use-Fluentd/blob/main/Disable-Fluentd.psm1)
 2. [Enable-Fluentd](https://github.com/azusapacificuniversity/Use-Fluentd/blob/main/Enable-Fluentd.psm1)
 3. [Get-FluentdStatus](https://github.com/azusapacificuniversity/Use-Fluentd/blob/main/Get-FluentdStatus.psm1)
@@ -18,30 +18,30 @@ Now we can start can install the module through Powershell Gallery
 > `Install-Module -Name Use-Fluentd`
 2. Import the module into your session
 > `Import-Module Use-Fluentd`
-3. Download the msi from Treasure Data Inc. and configure with your server information. *This is just an example*
-> `Install-Fluentd -Server 192.168.1.40 -Servername fluentd-02 -Tag "it-winevt.raw" -Port 7777`
-`Install-Fluentd` will take a variety of arguments that allow you to configure the service at install:
+3. Download the .msi from Treasure Data Inc. and configure with your server information. `Install-Fluentd` will take a variety of arguments that allow you to configure the service at install:
 ```
 -Server     The FQDN or IP of the fluentd server to forward the packets to.
 -Port       The port number of the server to specify (Defaults to 443)
 -Tag        The tag to forward the logs with. (defaults to winevt.raw)
 -Version    The version of td-agent to install. (Defaults to 4.0.1)
 ```
-After installation, Fluentd should be up and running.
+
+*This is just an example*
+> `Install-Fluentd -Server 192.168.1.40 -Servername fluentd-02 -Tag "it.winevt.raw" -Port 7777`
+
+After installing using `Install-Fluentd`, the function will automatically enable and start the fluentd service. 
 
 ### Configure Fluentd
 This configuration is currently set up using the widows_eventlog2 plugin to check windows logs, but if you wish to change it you can either alter the config file at
 > `C:\opt\td-agent\etc\td-agent\td-agent.conf`
 
-Or you can edit the `Set-FluentdConfig` function and run it in PS when you are finished. `Set-FluentdConfig` uses the same `-Server -Port -Tag` arguments as `Install-Fluentd`
+Or you can edit the `Set-FluentdConfig` function and run it in PS when you are finished. `Set-FluentdConfig` uses the same `-Server -Port -Tag` arguments as `Install-Fluentd`.
 
 ### Uninstall Fluentd
-If you no longer wish Fluentd to be on your machine simple use:
-> Uninstall-Fluentd
+If you no longer wish Fluentd to be on your machine simple use `Uninstall-Fluentd` and it will be completley removed from your computer. It removes the installed .msi file and cleans up any lingering configs from the default install location. 
 
-and it will be completley removed from your computer
 ## Running Fluentd
-You can start or stop Fluentd at any time using the following functions:
+You can start or stop the Fluentd service at any time using the following functions:
 > `Enable-Fluentd`or `Disable-Fluentd`
 
 To see information about Fluentd's status and configuration, you can use :
