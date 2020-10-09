@@ -32,10 +32,12 @@ Now we can start can install the module through Powershell Gallery.
 After installing using `Install-Fluentd`, the function will automatically enable and start the fluentd service. 
 
 ### Configure Fluentd
-When `Install-Fluentd` runs, it uses a gem install to update to the latest version of [fluent-plugin-windows-eventlog](https://github.com/fluent/fluent-plugin-windows-eventlog). This allows us to default the [widows_eventlog2 plugin](https://github.com/fluent/fluent-plugin-windows-eventlog#in_windows_eventlog2) to check the logs, which we've found to be more stable and efficient. If you wish to change your config, you can always edit the config file directly:
+When `Install-Fluentd` runs, it uses a gem install to update to the latest version of [fluent-plugin-windows-eventlog](https://github.com/fluent/fluent-plugin-windows-eventlog). This allows us to default the [widows_eventlog2 plugin](https://github.com/fluent/fluent-plugin-windows-eventlog#in_windows_eventlog2) to check the logs, which we've found to be more stable and efficient. If you wish to change your config, you can use `Set-FluentdConfig`, uses the same `-Server -Port -Tag` arguments as `Install-Fluentd`, to update your configuration. You'll need to restart the service for changes to take affect. 
+
+Or you can write your own td-agent.conf in place to use other plugins or filters. The config can be found here:
 > `C:\opt\td-agent\etc\td-agent\td-agent.conf`
 
-`Set-FluentdConfig` uses the same `-Server -Port -Tag` arguments as `Install-Fluentd`. Or you can write your own td-agent.conf in place. 
+*Please note that using `Set-FluentdConfig` overwrites the config file.*
 
 ### Uninstall Fluentd
 If you no longer wish Fluentd to be on your machine simple use `Uninstall-Fluentd` and it will be completley removed from your computer. It removes the installed .msi file and cleans up any lingering configs from the default install location. 
