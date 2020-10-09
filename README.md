@@ -51,3 +51,32 @@ Port:  7777
 Tags:  it.winevt.raw
 State: Running
 ```
+## Contributing
+If you're interested in contributing to this project, we would be honored and happy to have your help. If this is your first project, and you're a little confused on how to get started, be sure to check out [How to Contribute to Open Source](https://opensource.guide/how-to-contribute/) for an overview of good habits, and the Github documentation on [How to create a Pull Request](https://help.github.com/articles/creating-a-pull-request/) for the technical bits.
+
+It can be scary at first, but don't worry - you'll do fine.
+
+#### Please submit all pull requests to the azusapacificuniversity/Use-Fluentd repository in the develop branch!
+
+As you're working on bug-fixes or features, please break them out into their own feature branches and open the pull request against your feature branch. It makes it much easier to decipher down the road, as you open multiple pull requests over time, and makes it much easier for us to approve pull requests quickly.
+
+Another request is that you do not change the current requirements to running this program. An example, is that you might create a new function to get data that is useful to your organization. Our request is that that function isn't required to run natively or is enabled by default, but rather is available to users if they configure their version for it.
+
+#### Pull Request Guidelines:
+
+A good commit message should describe what changed and why. Use-Fluentd hopes to use semantic commit messages to streamline the release process and easily generate changelogs between versions.
+
+Before a pull request can be merged, it must have a pull request title with a semantic prefix.
+
+Examples of commit messages with semantic prefixes:
+
+    Fixed #<issue number>: Fixes Get-FLuentdStatus for X Bug.
+    Added #<issue number>: add Get-Config to view the current config.
+
+Please reference the issue or feature request your PR is addressing. Github will automatically link your PR to the issue, which makes it easier to follow the bugfix/feature path in the future.
+
+Whenever possible, please provide a clear summary of what your PR does, both from a technical perspective and from a functionality perspective.
+
+When Contributing, please understand that after a change is submitted, the modules must be resubmitted to Powershell to change the official module, but please feel free to use it in your own builds once you feel confident it works
+
+#### Thank you and we look forward to your contributions
