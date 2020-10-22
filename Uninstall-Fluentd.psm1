@@ -14,8 +14,15 @@ function Uninstall-Fluentd {
     if ( $(Get-Service -Name fluentdwinsvc) -ne $null ) {
         Write-Host "Unregistering Windows service."
         Disable-Fluentd
-        Start-Process "C:\opt\td-agent\bin\fluentd" -ArgumentList "--reg-winsvc u" -Wait -Verb RunAs
-        Write-Verbose "You need to restart to completely remove the product." -Verbose
+        if (Test-Path "C:\opt\td-agent\bin\fluentd"){
+            Start-Process "C:\opt\td-agent\bin\fluentd" -ArgumentList "--reg-winsvc u" -Wait -Verb RunAs
+            Write-Verbose "You need to restart to completely remove the product." -Verbose
+        }elseif (Test-Path "C:\opt\td-agent\embedded\bin\fluentd"){
+            Start-Process "C:\opt\td-agent\embedded\bin\fluentd" -ArgumentList "--reg-winsvc u" -Wait -Verb RunAs
+            Write-Verbose "You need to restart to completely remove the product." -Verbose
+        }else{
+            Write-Error -Message "A service was found registered, but could not be removed. If you're running powershell version 6 or later you can run this command to remove it manually: Get-Service -Name fluentdwinsvc | Remove-Service"  -ErrorAction Stop
+        }
     }
     Write-Host "Uninstalling td-agent..."
     Start-Process "msiexec.exe" -Args "/qn /x ${ProductCode}" -Wait -Verb RunAs
