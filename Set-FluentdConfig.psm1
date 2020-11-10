@@ -32,6 +32,7 @@ $ConfigFileBasline = "
     @id windows_eventlog2
     channels application,system,security
     read_existing_events false
+	parse_description true
     read_interval 2
     tag $Tag
     rate_limit 300
@@ -48,16 +49,14 @@ $ConfigFileBasline = "
 #--------------------------------------
 # FILTER PLUGIN
 #--------------------------------------
-# This is used to ensure backwards compatibility with windows_eventlog (version 1)
-# since windows_eventlog2 uses 'Description' vs 'description'
-# This will be deprecated in a future version
+# This is used to ensure compatibility with elasticsearch and graylog.
 <filter **>
    @type record_transformer
    <record>
-		description `${record[`"Description`"]}
+		message `${record[`"DescriptionTitle`"]}
    </record>
-   remove_keys Description
 </filter>
+
 
 #--------------------------------------
 # OUTPUT PLUGINS
